@@ -2,18 +2,24 @@
 
 Pharma est une application de bureau moderne et performante conçue pour optimiser la gestion quotidienne des pharmacies. Buildée avec **Electron**, **React** et **Prisma**, elle offre une solution robuste pour la gestion des stocks, des ventes et du personnel.
 
-##  Fonctionnalités Clés
+## Fonctionnalités Clés
 
-###  Gestion des Stocks de Précision
-*   **Gestion par Lots (Batches)** : Suivi rigoureux des produits par numéro de lot.
-*   **Contrôle des Expirations** : Alertes automatiques pour les produits approchant de leur date de péremption.
-*   **Stratégie FEFO** : Déduction automatique des stocks basée sur le principe *First Expired, First Out* pour minimiser les pertes.
-*   **Alertes de Stock Bas** : Notifications pour le réapprovisionnement.
+###  Interface Dashboard Premium
+*   **Design Moderne** : Refonte complète de l'interface avec une esthétique épurée et professionnelle (MUI v7).
+*   **KPIs en Temps Réel** : Visualisation instantanée du Chiffre d'Affaires, nombre de ventes, panier moyen et produits vendus.
+*   **Historique Détaillé** : Accès rapide aux transactions récentes avec consultation des détails par vente.
+*   **Filtres Temporels** : Analyse des données par jour, semaine ou mois.
+
+###  Gestion des Stocks & Inventaire (MAJ)
+*   **Inventaire Centralisé** : Vue d'ensemble de tous les produits avec KPIs dédiés (Valeur du stock, Alertes rupture, Péremptions).
+*   **Formulaire d'Ajout Avancé** : Saisie complète incluant Catégorie, Fabricant, Emplacement et Code-barres.
+*   **Gestion par Lots Automatisée** : Création automatique d'un lot initial lors de l'ajout d'un produit.
+*   **Recherche & Filtrage** : Système performant de recherche par nom, SKU ou statut (En Stock, Rupture, Périmé).
 
 ###  Point de Vente (POS) & Ventes
-*   **Interface Intuitive** : Processus de vente rapide pour les caissiers.
-*   **Multi-Paiements** : Prise en charge de divers modes de paiement (Espèces, etc.).
-*   **Historique des Ventes** : Suivi détaillé de toutes les transactions effectuées.
+*   **Interface Intuitive** : Processus de vente rapide optimisé pour fluidifier le passage en caisse.
+*   **Gestion du Panier** : Ajout/Suppression simplifié et calcul automatique des totaux.
+*   **Multi-Paiements** : Prise en charge des Espèces, Mobile Money et Cartes Bancaires.
 
 ###  Gestion des Sessions de Caisse (Shifts)
 *   **Ouverture/Fermeture de Session** : Contrôle strict des fonds de caisse.
@@ -24,7 +30,7 @@ Pharma est une application de bureau moderne et performante conçue pour optimis
 *   **Gestion des Rôles (RBAC)** : Accès différencié pour les administrateurs, pharmaciens et caissiers.
 *   **Gestion des Fournisseurs** : Base de données centralisée des partenaires et commandes.
 
-## 🛠️ Stack Technique
+##  Stack Technique
 
 *   **Frontend** : [React](https://reactjs.org/) + [TypeScript](https://www.typescriptlang.org/)
 *   **Build Tool** : [Vite](https://vitejs.dev/)
@@ -34,7 +40,7 @@ Pharma est une application de bureau moderne et performante conçue pour optimis
 *   **Gestion d'État** : [Zustand](https://github.com/pmndrs/zustand)
 *   **Mises à jour** : [Electron Updater](https://www.electron.build/auto-update)
 
-## 🛠️ Installation & Développement
+##  Installation & Développement
 
 ### Prérequis
 *   [Node.js](https://nodejs.org/) (version LTS recommandée)
@@ -64,14 +70,28 @@ npm run build
 ##  Architecture du Projet
 
 ```text
-├── electron/          # Processus principal Electron (Main & Preload)
-├── src/               # Code source Frontend (React)
-│   ├── app/           # Features, Stores, Components
-│   └── assets/        # Ressources statiques
-├── prisma/            # Schéma de base de données et migrations
-└── public/            # Assets publics
+├── electron/               # Processus principal Electron
+│   ├── main.ts             # Logique principale, IPC handlers, Base de données
+│   └── preload.ts          # Exposition de l'API sécurisée au Frontend
+├── prisma/                 # Configuration de la base de données
+│   ├── schema.prisma       # Modèles de données (User, Product, Sale, Batch...)
+│   └── migrations/         # Historique des changements de BDD
+├── src/                    # Code source Frontend (React + Vite)
+│   ├── app/                # Architecture Applicative
+│   │   ├── common/         # Composants et utilitaires partagés (ex: StatCard, DataGridTable)
+│   │   ├── features/       # Modules métiers (Feature-First Architecture)
+│   │   │   ├── dashboard/  # Statistiques et graphiques premium
+│   │   │   ├── inventory/  # Liste des stocks, KPIs et Formulaires
+│   │   │   ├── sales/      # Point de vente (POS) et interface caisse
+│   │   │   └── auth/       # Gestion du login et des sessions
+│   │   ├── layouts/        # Gabarits de structure (ex: Sidebar, MainLayout)
+│   │   ├── theme/          # Configuration visuelle (MUI)
+│   │   └── types/          # Types TypeScript globaux
+│   ├── assets/             # Images et icônes
+│   └── main.tsx            # Point d'entrée de l'application React
+└── README.md               # Documentation du projet
 ```
 
 ##  Licence
 
-Ce projet est la propriété de [Yoboué N'guessan Armel Constant /Future Company]. Tous droits réservés.
+Ce projet est la propriété de Yoboué N'guessan Armel Constant/ Future Compagnie. Tous droits réservés.
