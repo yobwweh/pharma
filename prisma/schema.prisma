@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id           String  @id @default(uuid())
+  username     String  @unique
+  passwordHash String
+  role         String  // ADMIN, PHARMACIEN, CAISSIER
+  sales        Sale[]
+  cashShifts   CashShift[]
+}
+
+model Product {
+  id            String  @id @default(uuid())
+  name          String
+  barcode       String  @unique
+  sellingPrice  Float
+  purchasePrice Float
+  // Stock management is now handled via ProductBatch (lots)
+  minStockAlert Int     @default(0)
+  batches       ProductBatch[]
+}
+
+model Supplier {
+  id          String  @id @default(uuid())
+  name        String
+  contactInfo String?
+  orders      Order[]
+}
+
+model Order {
+  id          String   @id @default(uuid())
+  supplierId  String
+  status      String   @default("DRAFT") // DRAFT, RECEIVED
+  totalAmount Float
+  supplier    Supplier @relation(fields: [supplierId], references: [id])
+}
+
+model ProductBatch {
+  id          String   @id @default(uuid())
+  productId   String
+  batchNumber String
+  quantity    Int
+  expiryDate  DateTime
+  createdAt   DateTime @default(now())
+
+  product     Product  @relation(fields: [productId], references: [id])
+}
+
+enum ShiftStatus {
+  OPEN
+  CLOSED
+}
+
+model CashShift {
+  id             String    @id @default(uuid())
+  userId         String
+  status         ShiftStatus @default(OPEN)
+  openingBalance Float
+  closingBalance Float?
+  openedAt       DateTime  @default(now())
+  closedAt       DateTime?
+
+  user           User      @relation(fields: [userId], references: [id])
+  sales          Sale[]
+}
+
+model Sale {
+  id            String   @id @default(uuid())
+  userId        String
+  shiftId       String
+  total         Float
+  paymentMethod String
+  user          User     @relation(fields: [userId], references: [id])
+  cashShift     CashShift @relation(fields: [shiftId], references: [id])
+}
