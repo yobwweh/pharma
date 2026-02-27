@@ -2,25 +2,25 @@
 
 Pharma est une application de bureau moderne et performante conçue pour optimiser la gestion quotidienne des pharmacies. Buildée avec **Electron**, **React** et **Prisma**, elle offre une solution robuste pour la gestion des stocks, des ventes et du personnel.
 
-## 🚀 Fonctionnalités Clés
+##  Fonctionnalités Clés
 
-### 📦 Gestion des Stocks de Précision
+###  Gestion des Stocks de Précision
 *   **Gestion par Lots (Batches)** : Suivi rigoureux des produits par numéro de lot.
 *   **Contrôle des Expirations** : Alertes automatiques pour les produits approchant de leur date de péremption.
 *   **Stratégie FEFO** : Déduction automatique des stocks basée sur le principe *First Expired, First Out* pour minimiser les pertes.
 *   **Alertes de Stock Bas** : Notifications pour le réapprovisionnement.
 
-### 💰 Point de Vente (POS) & Ventes
+###  Point de Vente (POS) & Ventes
 *   **Interface Intuitive** : Processus de vente rapide pour les caissiers.
 *   **Multi-Paiements** : Prise en charge de divers modes de paiement (Espèces, etc.).
 *   **Historique des Ventes** : Suivi détaillé de toutes les transactions effectuées.
 
-### 🕒 Gestion des Sessions de Caisse (Shifts)
+###  Gestion des Sessions de Caisse (Shifts)
 *   **Ouverture/Fermeture de Session** : Contrôle strict des fonds de caisse.
 *   **Réconciliation Financière** : Calcul automatique des écarts de caisse lors de la fermeture.
 *   **Rapports par Session** : Vue d'ensemble des performances par utilisateur et par shift.
 
-### 👥 Administration & Sécurité
+###  Administration & Sécurité
 *   **Gestion des Rôles (RBAC)** : Accès différencié pour les administrateurs, pharmaciens et caissiers.
 *   **Gestion des Fournisseurs** : Base de données centralisée des partenaires et commandes.
 
@@ -61,7 +61,7 @@ npm run dev
 npm run build
 ```
 
-## 🏗️ Architecture du Projet
+##  Architecture du Projet
 
 ```text
 ├── electron/          # Processus principal Electron (Main & Preload)
@@ -72,6 +72,6 @@ npm run build
 └── public/            # Assets publics
 ```
 
-## 📝 Licence
+##  Licence
 
-Ce projet est la propriété de [Nom/Entreprise]. Tous droits réservés.
+Ce projet est la propriété de [Yoboué N'guessan Armel Constant /Future Company]. Tous droits réservés.
